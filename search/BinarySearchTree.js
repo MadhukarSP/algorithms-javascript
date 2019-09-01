@@ -66,6 +66,6 @@ bst.add(60);
 bst.add(70);
 bst.add(45);
 
-bst.findMax();
-bst.findMin();
+console.log(bst.findMax());
+console.log(bst.findMin());
 
