@@ -17,7 +17,7 @@ class BST {
       this.root = new Node(data);
       return;
     } else {
-      const searchTree = function(data) {
+      const searchTree = function(node) {
         if(data < node.data) {
           if(node.left == null) {
             node.left = new Node(data);
@@ -36,7 +36,7 @@ class BST {
           return null;
         }
       }
-      return searchTree(data);
+      return searchTree(node);
     }
   }
     
