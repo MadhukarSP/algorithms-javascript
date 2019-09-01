@@ -116,5 +116,5 @@ console.log(bst.findMax());
 console.log(bst.findMin());
 console.log(bst.remove(20));
 console.log(bst.findMin());
-console.log(bst.remove(45);
+console.log(bst.remove(45));
 console.log(bst);
