@@ -55,6 +55,21 @@ class BST {
     }
     return current.data;
   }
+  
+  isPresent(data) {
+    let current = this.root;
+    while(current) {
+      if(current.data == data) {
+        return true;
+      }
+      if(data < current.data){
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return false;
+  }
 }
 
 let bst = new BST();
@@ -65,7 +80,7 @@ bst.add(20);
 bst.add(60);
 bst.add(70);
 bst.add(45);
-
+console.log(bst.isPresent(40));
 console.log(bst.findMax());
 console.log(bst.findMin());
 
