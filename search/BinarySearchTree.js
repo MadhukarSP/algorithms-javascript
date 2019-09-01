@@ -70,6 +70,36 @@ class BST {
     }
     return false;
   }
+  
+  remove(data) {
+    const removeNode = function(node, data) {
+      if(node==null){
+        return null;
+      }
+      if(data == node.data) {
+        if(node.left == null){
+          return node.right;
+        }
+        if(node.right == null) {
+          return node.left;
+        }
+        
+        let tempNode = node.right;
+        while(tempNode.left !== null) {
+          tempNode = tempNode.left;
+        }
+        node.data = tempNode.data;
+        node.right = removeNode(node.right, data)
+        return node;
+      } else if(data < node.data) {
+        node.left = removeNode(node.left, data)
+        return node;
+      } else {
+        node.right = removeNode(node.right, data);
+      }
+    }
+    this.root = removeNode(this.root, data);
+  }
 }
 
 let bst = new BST();
@@ -83,4 +113,5 @@ bst.add(45);
 console.log(bst.isPresent(40));
 console.log(bst.findMax());
 console.log(bst.findMin());
-
+console.log(20);
+console.log(bst.findMin());
