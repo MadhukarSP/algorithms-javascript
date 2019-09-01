@@ -89,13 +89,14 @@ class BST {
           tempNode = tempNode.left;
         }
         node.data = tempNode.data;
-        node.right = removeNode(node.right, data)
+        node.right = removeNode(node.right, tempNode.data);
         return node;
       } else if(data < node.data) {
         node.left = removeNode(node.left, data)
         return node;
       } else {
         node.right = removeNode(node.right, data);
+        return node;
       }
     }
     this.root = removeNode(this.root, data);
