@@ -67,7 +67,5 @@ let board = [['5','3','.','.','7','.','.','.','.'],
              ['.','.','.','4','1','9','.','.','5'],
              ['.','.','.','.','8','.','.','7','9']];
 
-// sudokuSolve(board);
-
 console.log(sudokuSolve(board));
 console.log(board);
