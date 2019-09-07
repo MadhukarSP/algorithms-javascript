@@ -3,12 +3,16 @@ let num = ['1','2','3','4','5','6','7','8','9'];
 function getCandidates(board, row, col) {
   let candidates = [];
   
-  for(chr of num) {
-    for(i in num) {
-      if(chr !== board[row][i] && chr !== board[i][col] && chr !== board[(row - row%3)+floor(i/3)][(col-col%3)+i%3]) {
-        candidates.push(chr);
+  for(let chr of num) {
+    let collision = false;
+    for(let i in num) {
+      if(chr == board[row][i] || chr == board[i][col] || chr == board[(row - row%3)+ Math.floor(i/3)][(col-col%3)+i%3]) {
+        collision = true;
         break;
       }
+    }
+    if(!collision) {
+      candidates.push(chr);
     }
   }
   
@@ -21,11 +25,11 @@ function sudokuSolve(board) {
   let row = -1;
   let col = -1;
   
-  for (r in num) {
-    for (c in num) {
-      if (board[r][c] === '.') {
+  for (let r in num) {
+    for (let c in num) {
+      if (board[r][c] == '.') {
         
-        newCandidates = getCandidates(board, r, c);
+        let newCandidates = getCandidates(board, r, c);
         
         if(candidates == null || newCandidates.length < candidates.length) {
           candidates = newCandidates;
@@ -36,22 +40,24 @@ function sudokuSolve(board) {
     }
   }
   
-  if(candidates == null)
+  if(candidates == null) {
     return true;
+  }
   
-  for(val of candidates) {
+  for(let val of candidates) {
     board[row][col] = val;
-    if(sudokuSolve(board))
+    if(sudokuSolve(board)) {
       return true;
+    }
     
-    board[row]col] = '.';
+    board[row][col] = '.';
   }
   
   return false;
 }
 
 
-let board = [['5','3','.','7','.','.','.','.','.'],
+let board = [['5','3','.','.','7','.','.','.','.'],
              ['6','.','.','1','9','5','.','.','.'],
              ['.','9','8','.','.','.','.','6','.'],
              ['8','.','.','.','6','.','.','.','3'],
@@ -59,6 +65,9 @@ let board = [['5','3','.','7','.','.','.','.','.'],
              ['7','.','.','.','2','.','.','.','.'],
              ['.','6','.','.','.','.','2','8','.'],
              ['.','.','.','4','1','9','.','.','5'],
-             ['.','.','.','.','8','.','.','7','9']]
+             ['.','.','.','.','8','.','.','7','9']];
+
+// sudokuSolve(board);
 
 console.log(sudokuSolve(board));
+console.log(board);
