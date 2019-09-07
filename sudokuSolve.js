@@ -5,8 +5,9 @@ function getCandidates(board, row, col) {
   
   for(chr of num) {
     for(i in num) {
-      if(chr !== board[row][i] && chr !== board[i][col] && chr !== board[][]) {
-        candidates.push(chr)
+      if(chr !== board[row][i] && chr !== board[i][col] && chr !== board[(row - row%3)+floor(i/3)][(col-col%3)+i%3]) {
+        candidates.push(chr);
+        break;
       }
     }
   }
@@ -59,3 +60,5 @@ let board = [['5','3','.','7','.','.','.','.','.'],
              ['.','6','.','.','.','.','2','8','.'],
              ['.','.','.','4','1','9','.','.','5'],
              ['.','.','.','.','8','.','.','7','9']]
+
+console.log(sudokuSolve(board));
