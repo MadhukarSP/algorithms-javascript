@@ -1,0 +1,48 @@
+let arrr = ['x', 'y', 'z', 'a'];
+let mainStr = 'xsdhjfhj hjkbdf sazyxdhjfbhsbdfhshdfkhjbsdhfb sdjhfbjhzyzyaaahddbbdhdghfhfhshdfbhjdyyasysyzzyxaxyz';
+
+function getShortestUniqueSubstring(arr, str) {
+  
+  let susubStr = str;
+  let tmpSubStr = '';
+  let charSet = new Set(arr);
+  let length = str.length;
+  
+  for(let i=0; i<length; i++) {
+    
+    let chr = str.charAt(i);
+    let c=i+1;
+    
+    if(charSet.delete(chr)) {
+      for(; c<length; c++) {
+        let subChar = str.charAt(c);
+        if(charSet.delete(subChar)) {
+          if(charSet.size === 0) {
+            tmpSubStr = str.substring(i, c+1)
+            break;
+          }
+        }
+      }
+    }
+    
+    if(tmpSubStr.length < susubStr.length) {
+      susubStr = tmpSubStr;
+    }
+    
+    charSet = new Set(arr);
+    
+    if(susubStr.size === charSet.size)
+      break;
+  }
+  
+  return susubStr;
+}
+
+let subStr = getShortestUniqueSubstring(arrr, mainStr);
+
+console.log("Array")
+console.log(arrr)
+console.log("Main String")
+console.log(mainStr)
+console.log("Shortest Unique subString")
+console.log(subStr)
